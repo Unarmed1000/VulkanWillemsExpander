@@ -57,7 +57,7 @@ SOURCE_TAG = "// Explanded by VulkanWillemsExpander https://github.com/Unarmed10
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.5 alpha'
+    return 'VulkanWillemsExpander V0.1.6 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -336,6 +336,11 @@ g_methodImageMemoryBarrier0 = [
     ("pNext", "nullptr"), 
     ("srcQueueFamilyIndex","VK_QUEUE_FAMILY_IGNORED"), 
     ("dstQueueFamilyIndex", "VK_QUEUE_FAMILY_IGNORED") 
+]
+
+g_methodImageViewCreateInfo0 = [
+	("sType", "VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO"),
+	("pNext", "nullptr"),
 ]
 
 #
