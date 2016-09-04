@@ -25,12 +25,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Util\IOUtil.py" />
-    <Compile Include="Util\__init__.py" />
+    <Compile Include="VulkanWillemsExpander\IOUtil.py" />
+    <Compile Include="VulkanWillemsExpander\__init__.py" />
     <Compile Include="VulkanWillemsExpander.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Util\" />
+    <Folder Include="VulkanWillemsExpander\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -45,7 +45,7 @@
 
 import argparse
 import os
-from Util import IOUtil
+from VulkanWillemsExpander import IOUtil
 
 __g_verbosityLevel = 0
 __g_debugEnabled = False
@@ -53,7 +53,7 @@ __g_allowDevelopmentPlugins = False
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.0.1 alpha'
+    return 'VulkanWillemsExpander V0.1.0 alpha'
 
 
 def ShowTitleIfNecessary():
