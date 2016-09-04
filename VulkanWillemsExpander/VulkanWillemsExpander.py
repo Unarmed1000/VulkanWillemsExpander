@@ -50,10 +50,11 @@ from VulkanWillemsExpander import IOUtil
 __g_verbosityLevel = 0
 __g_debugEnabled = False
 __g_allowDevelopmentPlugins = False
+MAGIC_TAG = "__expanded__"
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.0 alpha'
+    return 'VulkanWillemsExpander V0.1.1 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -849,7 +850,7 @@ def ProcessFile(sourceFileName, targetFileName):
         dir = IOUtil.GetDirectoryName(sourceFileName)
         file = IOUtil.GetFileNameWithoutExtension(sourceFileName)
         ext = IOUtil.GetFileNameExtension(sourceFileName)
-        targetFileName = IOUtil.Join(dir, "%s__expanded__%s" % (file, ext))
+        targetFileName = IOUtil.Join(dir, "%s%s%s" % (file, MAGIC_TAG, ext))
     ProcesssSourceFile(sourceFileName, targetFileName)
 
 
@@ -870,7 +871,7 @@ def Process(sourceFileName, targetFileName, args):
             sourceFileName = IOUtil.NormalizePath(os.getcwd())
         files = IOUtil.GetFilePaths(sourceFileName, ".cpp")
         for file in files:
-            if IsTarget(file):
+            if not MAGIC_TAG in file and IsTarget(file):
                 if( __g_verbosityLevel > 0 ):
                     print("Processing: %s" % (file))
                 ProcessFile(file, None)
