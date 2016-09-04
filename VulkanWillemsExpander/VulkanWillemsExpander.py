@@ -50,11 +50,14 @@ from VulkanWillemsExpander import IOUtil
 __g_verbosityLevel = 0
 __g_debugEnabled = False
 __g_allowDevelopmentPlugins = False
-MAGIC_TAG = "__expanded__"
+
+MAGIC_TAG = "__exp__"
+TAG_SEARCH = "VulkanWillemsExpander"
+SOURCE_TAG = "// Explanded by VulkanWillemsExpander https://github.com/Unarmed1000/VulkanWillemsExpander"
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.1 alpha'
+    return 'VulkanWillemsExpander V0.1.4 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -452,10 +455,10 @@ g_methodPipelineViewportStateCreateInfo3 = [
 
 #
 g_methodRect2D4 = [
-	("rect2D.offset.x", "#2"),
-	("rect2D.offset.y", "#3"),
-	("rect2D.extent.width", "#0"),
-	("rect2D.extent.height", "#1"),
+	("offset.x", "#2"),
+	("offset.y", "#3"),
+	("extent.width", "#0"),
+	("extent.height", "#1"),
 ]
 
 #
@@ -812,6 +815,7 @@ def ProcesssSourceFile(sourceFileName, targetFileName):
     source = sourceFile
     for record in reversed(allEntries):
         source = PatchCode(source, record)
+    source += "\n%s\n" % SOURCE_TAG
     IOUtil.WriteFileIfChanged(targetFileName, source);
 
     #for record in allEntries:
@@ -856,7 +860,7 @@ def ProcessFile(sourceFileName, targetFileName):
 
 def IsTarget(file):
     content = IOUtil.ReadFile(file)
-    return ("public VulkanExampleBase" in content)
+    return ("public VulkanExampleBase" in content and not TAG_SEARCH in content)
 
 
 def Process(sourceFileName, targetFileName, args):
