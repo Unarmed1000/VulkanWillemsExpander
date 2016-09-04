@@ -57,7 +57,7 @@ SOURCE_TAG = "// Explanded by VulkanWillemsExpander https://github.com/Unarmed10
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.4 alpha'
+    return 'VulkanWillemsExpander V0.1.5 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -560,7 +560,7 @@ g_allMethods = [
     MethodInfo("framebufferCreateInfo", 0, g_methodFramebufferCreateInfo0),
     MethodInfo("imageCreateInfo", 0, g_methodImageCreateInfo0),
     MethodInfo("imageMemoryBarrier", 0, g_methodImageMemoryBarrier0),
-    MethodInfo("imageViewCreateInfo", 0, g_methodSamplerCreateInfo0),
+    MethodInfo("imageViewCreateInfo", 0, g_methodImageViewCreateInfo0),
     MethodInfo("memoryAllocateInfo", 0, g_methodMemoryAllocateInfo0),
     MethodInfo("memoryBarrier", 0, g_methodMemoryBarrier0),
     MethodInfo("pipelineColorBlendAttachmentState", 2, g_methodPipelineColorBlendAttachmentState2),
