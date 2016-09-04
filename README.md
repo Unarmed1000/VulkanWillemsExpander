@@ -14,7 +14,7 @@ Example if the source code reads:
 This is replaced with:
 
 	VkPipelineDynamicStateCreateInfo dynamicState{};
-	dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+	dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
 	dynamicState.flags = static_cast<uint32_t>(dynamicStateEnables.size());
 	dynamicState.topology = dynamicStateEnables.data();
 	dynamicState.primitiveRestartEnable = 0;
