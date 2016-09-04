@@ -25,6 +25,7 @@
 # This is useful if you are trying to recreate the samples directly in native vulkan.
 #
 # Example if the source code reads:
+#
 #		VkPipelineDynamicStateCreateInfo dynamicState =
 #			vkTools::initializers::pipelineDynamicStateCreateInfo(
 #				dynamicStateEnables.data(),
@@ -194,10 +195,13 @@ def FindNextInitializer(source, startIndex):
     return InitRecord(newIndex, indexParamsEnd+1, methodName, parameters)
 
 
+#
 g_methodBufferCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO"),
+	("pNext", "nullptr"),
 ]
 
+#
 g_methodBufferCreateInfo2 = [
 	("sType", "VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO"),
 	("pNext", "nullptr"),
@@ -206,11 +210,13 @@ g_methodBufferCreateInfo2 = [
 	("usage", "#0"),
 ]
 
+#
 g_methodBufferMemoryBarrier0 = [
 	("sType", "VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodCommandBufferAllocateInfo3 = [
 	("sType", "VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO"),
 	("commandPool", "#0"),
@@ -218,31 +224,37 @@ g_methodCommandBufferAllocateInfo3 = [
 	("commandBufferCount", "#2"),
 ]
 
+#
 g_methodCommandPoolCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO"),
 ]
 
+#
 g_methodCommandBufferBeginInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodCommandBufferInheritanceInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO"),
 ]
 
+#
 g_methodComputePipelineCreateInfo2 = [
 	("sType", "VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO"),
 	("flags", "#1"),
 	("layout", "#0"),
 ]
 
+#
 g_methodDescriptorImageInfo3 = [
 	("sampler", "#0"),
 	("imageView", "#1"),
 	("imageLayout", "#2"),
 ]
 
+#
 g_methodDescriptorPoolCreateInfo3 = [
 	("sType", "VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO"),
 	("pNext", "nullptr"),
@@ -251,12 +263,13 @@ g_methodDescriptorPoolCreateInfo3 = [
 	("pPoolSizes", "#1"),
 ]
 
+#
 g_methodDescriptorPoolSize2 = [
 	("type", "#0"),
 	("descriptorCount", "#1"),
 ]
 
-
+#
 g_methodDescriptorSetLayoutBinding3 = [
 	("binding", "#2"),
 	("descriptorType", "#0"),
@@ -264,6 +277,7 @@ g_methodDescriptorSetLayoutBinding3 = [
 	("stageFlags", "#1"),
 ]
 
+#
 g_methodDescriptorSetLayoutBinding4 = [
 	("binding", "#2"),
 	("descriptorType", "#0"),
@@ -271,6 +285,7 @@ g_methodDescriptorSetLayoutBinding4 = [
 	("stageFlags", "#1"),
 ]
 
+#
 g_methodDescriptorSetAllocateInfo3 = [
 	("sType", "VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO"),
 	("pNext", "nullptr"),
@@ -279,6 +294,7 @@ g_methodDescriptorSetAllocateInfo3 = [
 	("pSetLayouts", "#1"),
 ]
 
+#
 g_methodDescriptorSetLayoutCreateInfo2 = [
 	("sType", "VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO"),
 	("pNext", "nullptr"),
@@ -286,25 +302,30 @@ g_methodDescriptorSetLayoutCreateInfo2 = [
 	("pBindings", "#0"),
 ]
 
+#
 g_methodEventCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_EVENT_CREATE_INFO"),
 ]
 
+#
 g_methodFenceCreateInfo1 = [
 	("sType", "VK_STRUCTURE_TYPE_FENCE_CREATE_INFO"),
 	("flags", "#0"),
 ]
 
+#
 g_methodFramebufferCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodImageCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodImageMemoryBarrier0 = [
     ("sType", "VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER"), 
     ("pNext", "nullptr"), 
@@ -312,11 +333,13 @@ g_methodImageMemoryBarrier0 = [
     ("dstQueueFamilyIndex", "VK_QUEUE_FAMILY_IGNORED") 
 ]
 
+#
 g_methodSamplerCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodMemoryAllocateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO"),
 	("pNext", "nullptr"),
@@ -324,16 +347,19 @@ g_methodMemoryAllocateInfo0 = [
 	("memoryTypeIndex", "0")
 ]
 
+#
 g_methodMemoryBarrier0 = [
 	("sType", "VK_STRUCTURE_TYPE_MEMORY_BARRIER"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodPipelineColorBlendAttachmentState2 = [
 	("blendEnable", "#1"),
 	("colorWriteMask", "#0"),
 ]
 
+#
 g_methodPipelineColorBlendStateCreateInfo2 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO"),
 	("pNext", "nullptr"),
@@ -341,21 +367,26 @@ g_methodPipelineColorBlendStateCreateInfo2 = [
 	("pAttachments", "#1"),
 ]
 
+#
 g_methodPipelineCreateInfo3 = [
 	("sType", "VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO"),
 	("pNext", "nullptr"),
-	("flags", "#2"),
-	("dynamicStateCount", "#1"),
-	("pDynamicStates", "#0"),
-]
-
-g_methodPipelineDepthStencilStateCreateInfo3 = [
-	("sType", "VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO"),
 	("flags", "#2"),
 	("layout", "#0"),
 	("renderPass", "#1"),
 ]
 
+#
+g_methodPipelineDepthStencilStateCreateInfo3 = [
+	("sType", "VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO"),
+	("depthTestEnable", "#0"),
+	("depthWriteEnable", "#1"),
+	("depthCompareOp", "#2"),
+	("front.compareOp", "VK_COMPARE_OP_ALWAYS"),
+	("back.compareOp", "VK_COMPARE_OP_ALWAYS"),
+]
+
+#
 g_methodPipelineDynamicStateCreateInfo3 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO"),
 	("flags", "#2"),
@@ -363,6 +394,7 @@ g_methodPipelineDynamicStateCreateInfo3 = [
 	("pDynamicStates", "#0"),
 ]
 
+#
 g_methodPipelineInputAssemblyStateCreateInfo3 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO"),
 	("flags", "#1"),
@@ -370,6 +402,7 @@ g_methodPipelineInputAssemblyStateCreateInfo3 = [
 	("primitiveRestartEnable", "#2"),
 ]
 
+#
 g_methodPipelineLayoutCreateInfo2 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO"),
 	("pNext", "nullptr"),
@@ -377,12 +410,14 @@ g_methodPipelineLayoutCreateInfo2 = [
 	("pSetLayouts", "#0"),
 ]
 
+#
 g_methodPipelineMultisampleStateCreateInfo2 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO"),
 	("flags", "#1"),
 	("rasterizationSamples", "#0"),
 ]
 
+#
 g_methodPipelineRasterizationStateCreateInfo4 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO"),
 	("flags", "#3"),
@@ -393,16 +428,19 @@ g_methodPipelineRasterizationStateCreateInfo4 = [
 	("lineWidth", "1.0f"),
 ]
 
+#
 g_methodPipelineTessellationStateCreateInfo1 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO"),
 	("patchControlPoints", "#0"),
 ]
 
+#
 g_methodPipelineVertexInputStateCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodPipelineViewportStateCreateInfo3 = [
 	("sType", "VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO"),
 	("flags", "#2"),
@@ -410,6 +448,7 @@ g_methodPipelineViewportStateCreateInfo3 = [
 	("scissorCount", "#1"),
 ]
 
+#
 g_methodRect2D4 = [
 	("rect2D.offset.x", "#2"),
 	("rect2D.offset.y", "#3"),
@@ -417,31 +456,38 @@ g_methodRect2D4 = [
 	("rect2D.extent.height", "#1"),
 ]
 
+#
 g_methodRenderPassBeginInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodRenderPassCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodSamplerCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodSemaphoreCreateInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO"),
 	("pNext", "nullptr"),
+	("flags", "0"),
 ]
 
+#
 g_methodSubmitInfo0 = [
 	("sType", "VK_STRUCTURE_TYPE_SUBMIT_INFO"),
 	("pNext", "nullptr"),
 ]
 
+#
 g_methodViewport4 = [
 	("width", "#0"),
 	("height", "#1"),
@@ -449,12 +495,14 @@ g_methodViewport4 = [
 	("maxDepth", "#3"),
 ]
 
+#
 g_methodVertexInputBindingDescription3 = [
 	("binding", "#0"),
 	("stride", "#1"),
 	("inputRate", "#2"),
 ]
 
+#
 g_methodVertexInputAttributeDescription4 = [
 	("location", "#1"),
 	("binding", "#0"),
@@ -462,6 +510,7 @@ g_methodVertexInputAttributeDescription4 = [
 	("offset", "#3"),
 ]
 
+#
 g_methodWriteDescriptorSet4A = [
 	("sType", "VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET"),
 	("pNext", "nullptr"),
@@ -472,6 +521,7 @@ g_methodWriteDescriptorSet4A = [
 	("pBufferInfo", "#3"),
 ]
 
+#
 g_methodWriteDescriptorSet4B = [
 	("sType", "VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET"),
 	("pNext", "nullptr"),
