@@ -34,10 +34,10 @@
 # This is replaced with:
 #
 #		VkPipelineDynamicStateCreateInfo dynamicState{};
-#		dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-#		dynamicState.flags = static_cast<uint32_t>(dynamicStateEnables.size());
-#		dynamicState.topology = dynamicStateEnables.data();
-#		dynamicState.primitiveRestartEnable = 0;
+#		dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
+#		dynamicState.flags = 0;
+#		dynamicState.dynamicStateCount = static_cast<uint32_t>(dynamicStateEnables.size());
+#		dynamicState.pDynamicStates = dynamicStateEnables.data();
 #
 # Which size wise is about the same but more applicable for native vulkan development
 #
@@ -356,11 +356,11 @@ g_methodPipelineDepthStencilStateCreateInfo3 = [
 	("renderPass", "#1"),
 ]
 
-g_methodpipelineDynamicStateCreateInfo3 = [
-	("sType", "VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO"),
-	("flags", "#1"),
-	("topology", "#0"),
-	("primitiveRestartEnable", "#2"),
+g_methodPipelineDynamicStateCreateInfo3 = [
+	("sType", "VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO"),
+	("flags", "#2"),
+	("dynamicStateCount", "#1"),
+	("pDynamicStates", "#0"),
 ]
 
 g_methodPipelineInputAssemblyStateCreateInfo3 = [
@@ -512,7 +512,7 @@ g_allMethods = [
     MethodInfo("pipelineColorBlendStateCreateInfo", 2, g_methodPipelineColorBlendStateCreateInfo2),
     MethodInfo("pipelineCreateInfo", 3, g_methodPipelineCreateInfo3),
     MethodInfo("pipelineDepthStencilStateCreateInfo", 3, g_methodPipelineDepthStencilStateCreateInfo3),
-    MethodInfo("pipelineDynamicStateCreateInfo", 3, g_methodpipelineDynamicStateCreateInfo3),
+    MethodInfo("pipelineDynamicStateCreateInfo", 3, g_methodPipelineDynamicStateCreateInfo3),
     MethodInfo("pipelineInputAssemblyStateCreateInfo", 3, g_methodPipelineInputAssemblyStateCreateInfo3),
     MethodInfo("pipelineLayoutCreateInfo", 2, g_methodPipelineLayoutCreateInfo2),
     MethodInfo("pipelineMultisampleStateCreateInfo", 2, g_methodPipelineMultisampleStateCreateInfo2),
