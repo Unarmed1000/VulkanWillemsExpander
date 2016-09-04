@@ -4,6 +4,7 @@ It basically transform most of vkTools::initializers:: to their native vulkan co
 This is useful if you are trying to recreate the samples directly in native vulkan.
 
 Example if the source code reads:
+
 	VkPipelineDynamicStateCreateInfo dynamicState =
 		vkTools::initializers::pipelineDynamicStateCreateInfo(
 			dynamicStateEnables.data(),
