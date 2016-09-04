@@ -44,6 +44,7 @@
 #
 
 import argparse
+import os
 from Util import IOUtil
 
 __g_verbosityLevel = 0
@@ -584,6 +585,11 @@ g_allMethods = [
 ]
 
 
+g_ignoreMethods = {
+    "pushConstantRange"
+}
+
+
 def BuildCodeReplacementDict():
     dict = {}
     for entry in g_allMethods:
@@ -740,11 +746,15 @@ def PatchCodeInitializer(source, record):
 
 
 def PatchCode(source, record):
+    if not record.MethodInfo:
+        return source
+
     if record.UseCase == UseCase.Initializer:
         return PatchCodeInitializer(source, record)
     else:
         return PatchCodeComment(source, record)
     return source
+
 
 def DetermineAssignmentType(source, record, previousIndex, index):
     foundIndex = LastIndexOfNonWhitepace(source, index)
@@ -780,7 +790,8 @@ def ProcesssSourceFile(sourceFileName, targetFileName):
     allEntries = []
     record = FindNextInitializer(sourceFile, 0)
     while record != None:
-        allEntries.append(record)
+        if not record.Name in g_ignoreMethods:
+            allEntries.append(record)
         record = FindNextInitializer(sourceFile, record.EndIndex)
 
     previousIndex = 0
@@ -833,14 +844,40 @@ def EarlyArgumentParser():
             return False
     return True
 
-def Process(sourceFileName, targetFileName, args):
-
+def ProcessFile(sourceFileName, targetFileName):
     if not targetFileName:
         dir = IOUtil.GetDirectoryName(sourceFileName)
         file = IOUtil.GetFileNameWithoutExtension(sourceFileName)
         ext = IOUtil.GetFileNameExtension(sourceFileName)
         targetFileName = IOUtil.Join(dir, "%s__expanded__%s" % (file, ext))
     ProcesssSourceFile(sourceFileName, targetFileName)
+
+
+def IsTarget(file):
+    content = IOUtil.ReadFile(file)
+    return ("public VulkanExampleBase" in content)
+
+
+def Process(sourceFileName, targetFileName, args):
+    global __g_verbosityLevel
+    if not sourceFileName and not args.recursive:
+        return
+
+    if not args.recursive:
+        ProcessFile(sourceFileName, targetFileName)
+    else:
+        if not sourceFileName: 
+            sourceFileName = IOUtil.NormalizePath(os.getcwd())
+        files = IOUtil.GetFilePaths(sourceFileName, ".cpp")
+        for file in files:
+            if IsTarget(file):
+                if( __g_verbosityLevel > 0 ):
+                    print("Processing: %s" % (file))
+                ProcessFile(file, None)
+            else:
+                if( __g_verbosityLevel > 1 ):
+                    print("Skipping: %s" % (file))
+
 
 
 def main():
@@ -854,8 +891,9 @@ def main():
     ### Add the main command line arguments
     parser = argparse.ArgumentParser(description='Quick python script to help make the Vulkan source examples from https://github.com/SaschaWillems/Vulkan more verbose.')
     AddDefaultOptions(parser)
-    parser.add_argument("inputFile", help="the name of the input file")
+    parser.add_argument("inputFile",  nargs='?', help="the name of the input file")
     parser.add_argument("outputFile", nargs='?', default=None, help="the name of the output file")
+    parser.add_argument('-r', '--recursive', action='store_true',  help="Scan the given path recursively for .cpp files that contain 'public VulkanExampleBase' and process those that do")
 
     try:
         args = parser.parse_args()
