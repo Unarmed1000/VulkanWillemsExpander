@@ -53,7 +53,7 @@ __g_allowDevelopmentPlugins = False
 
 MAGIC_TAG = "__exp__"
 TAG_SEARCH = "VulkanWillemsExpander"
-SOURCE_TAG = "// Explanded by VulkanWillemsExpander https://github.com/Unarmed1000/VulkanWillemsExpander"
+SOURCE_TAG = "// Expanded by VulkanWillemsExpander https://github.com/Unarmed1000/VulkanWillemsExpander"
 
 
 def GetTitle():
