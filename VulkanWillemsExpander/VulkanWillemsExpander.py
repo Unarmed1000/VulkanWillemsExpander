@@ -57,7 +57,7 @@ SOURCE_TAG = "// Expanded by VulkanWillemsExpander https://github.com/Unarmed100
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.6 alpha'
+    return 'VulkanWillemsExpander V0.1.7 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -796,6 +796,9 @@ def DetermineUseCase(source, record, previousIndex, previousUseCase):
 
 def ProcesssSourceFile(sourceFileName, targetFileName):
     sourceFile = IOUtil.ReadFile(sourceFileName);
+    if TAG_SEARCH in sourceFile:
+        return
+
     allEntries = []
     record = FindNextInitializer(sourceFile, 0)
     while record != None:
@@ -854,12 +857,12 @@ def EarlyArgumentParser():
             return False
     return True
 
-def ProcessFile(sourceFileName, targetFileName):
+def ProcessFile(sourceFileName, targetFileName, overwrite):
     if not targetFileName:
         dir = IOUtil.GetDirectoryName(sourceFileName)
         file = IOUtil.GetFileNameWithoutExtension(sourceFileName)
         ext = IOUtil.GetFileNameExtension(sourceFileName)
-        targetFileName = IOUtil.Join(dir, "%s%s%s" % (file, MAGIC_TAG, ext))
+        targetFileName = IOUtil.Join(dir, "%s%s%s" % (file, MAGIC_TAG, ext)) if not overwrite else sourceFileName
     ProcesssSourceFile(sourceFileName, targetFileName)
 
 
@@ -874,7 +877,7 @@ def Process(sourceFileName, targetFileName, args):
         return
 
     if not args.recursive:
-        ProcessFile(sourceFileName, targetFileName)
+        ProcessFile(sourceFileName, targetFileName, args.overwrite)
     else:
         if not sourceFileName: 
             sourceFileName = IOUtil.NormalizePath(os.getcwd())
@@ -883,7 +886,7 @@ def Process(sourceFileName, targetFileName, args):
             if not MAGIC_TAG in file and IsTarget(file):
                 if( __g_verbosityLevel > 0 ):
                     print("Processing: %s" % (file))
-                ProcessFile(file, None)
+                ProcessFile(file, None, args.overwrite)
             else:
                 if( __g_verbosityLevel > 1 ):
                     print("Skipping: %s" % (file))
@@ -904,6 +907,7 @@ def main():
     parser.add_argument("inputFile",  nargs='?', help="the name of the input file")
     parser.add_argument("outputFile", nargs='?', default=None, help="the name of the output file")
     parser.add_argument('-r', '--recursive', action='store_true',  help="Scan the given path recursively for .cpp files that contain 'public VulkanExampleBase' and process those that do")
+    parser.add_argument('--overwrite', action='store_true',  help="Overwrite the input file(s), this only wors if no outputFile is specified")
 
     try:
         args = parser.parse_args()
