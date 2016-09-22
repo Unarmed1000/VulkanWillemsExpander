@@ -57,7 +57,7 @@ SOURCE_TAG = "// Expanded by VulkanWillemsExpander https://github.com/Unarmed100
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.7 alpha'
+    return 'VulkanWillemsExpander V0.1.8 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -883,7 +883,7 @@ def Process(sourceFileName, targetFileName, args):
             sourceFileName = IOUtil.NormalizePath(os.getcwd())
         files = IOUtil.GetFilePaths(sourceFileName, ".cpp")
         for file in files:
-            if not MAGIC_TAG in file and IsTarget(file):
+            if not MAGIC_TAG in file and (args.all or IsTarget(file)):
                 if( __g_verbosityLevel > 0 ):
                     print("Processing: %s" % (file))
                 ProcessFile(file, None, args.overwrite)
@@ -907,6 +907,7 @@ def main():
     parser.add_argument("inputFile",  nargs='?', help="the name of the input file")
     parser.add_argument("outputFile", nargs='?', default=None, help="the name of the output file")
     parser.add_argument('-r', '--recursive', action='store_true',  help="Scan the given path recursively for .cpp files that contain 'public VulkanExampleBase' and process those that do")
+    parser.add_argument('--all', action='store_true',  help="If recursive mode and 'all' is enabled, then all hpp and cpp files are modified")
     parser.add_argument('--overwrite', action='store_true',  help="Overwrite the input file(s), this only wors if no outputFile is specified")
 
     try:
