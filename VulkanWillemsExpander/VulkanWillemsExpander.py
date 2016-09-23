@@ -57,7 +57,7 @@ SOURCE_TAG = "// Expanded by VulkanWillemsExpander https://github.com/Unarmed100
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.8 alpha'
+    return 'VulkanWillemsExpander V0.1.9 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -774,8 +774,16 @@ def DetermineAssignmentType(source, record, previousIndex, index):
     firstWhiteSpaceIndex = LastIndexOfWhitepace(source, foundIndex)
     if firstWhiteSpaceIndex < 0:
         raise Exception("hmm");
-    left = source[firstWhiteSpaceIndex+1:foundIndex]
+    left = source[firstWhiteSpaceIndex+1:foundIndex+1]
     if '.' in left or "->" in left:
+        return UseCase.MemberAssignment
+
+    # try to determine if we have a 
+    typeStartIndex = LastIndexOfNonWhitepace(source, firstWhiteSpaceIndex-1)
+    if typeStartIndex < 0:
+        raise Exception("type not found");
+
+    if source[typeStartIndex] == ';' or source[typeStartIndex] == '{' or source[typeStartIndex] == '}':
         return UseCase.MemberAssignment
     return UseCase.Initializer
 
@@ -881,15 +889,17 @@ def Process(sourceFileName, targetFileName, args):
     else:
         if not sourceFileName: 
             sourceFileName = IOUtil.NormalizePath(os.getcwd())
-        files = IOUtil.GetFilePaths(sourceFileName, ".cpp")
+        files = IOUtil.GetFilePaths(sourceFileName, None)
+        files = [file for file in files if file.lower().endswith(".cpp") or file.lower().endswith(".hpp")]
         for file in files:
-            if not MAGIC_TAG in file and (args.all or IsTarget(file)):
-                if( __g_verbosityLevel > 0 ):
-                    print("Processing: %s" % (file))
-                ProcessFile(file, None, args.overwrite)
-            else:
-                if( __g_verbosityLevel > 1 ):
-                    print("Skipping: %s" % (file))
+            if not (file.endswith("vulkantools.h") or file.endswith("vulkantools.cpp")):
+                if not MAGIC_TAG in file and (args.all or IsTarget(file)):
+                    if( __g_verbosityLevel > 0 ):
+                        print("Processing: %s" % (file))
+                    ProcessFile(file, None, args.overwrite)
+                else:
+                    if( __g_verbosityLevel > 1 ):
+                        print("Skipping: %s" % (file))
 
 
 
@@ -906,7 +916,7 @@ def main():
     AddDefaultOptions(parser)
     parser.add_argument("inputFile",  nargs='?', help="the name of the input file")
     parser.add_argument("outputFile", nargs='?', default=None, help="the name of the output file")
-    parser.add_argument('-r', '--recursive', action='store_true',  help="Scan the given path recursively for .cpp files that contain 'public VulkanExampleBase' and process those that do")
+    parser.add_argument('-r', '--recursive', action='store_true',  help="Scan the given path recursively for .hpp and .cpp files that contain 'public VulkanExampleBase' and process those that do")
     parser.add_argument('--all', action='store_true',  help="If recursive mode and 'all' is enabled, then all hpp and cpp files are modified")
     parser.add_argument('--overwrite', action='store_true',  help="Overwrite the input file(s), this only wors if no outputFile is specified")
 

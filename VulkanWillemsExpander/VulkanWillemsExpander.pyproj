@@ -13,7 +13,7 @@
     <Name>VulkanWillemsExpander</Name>
     <RootNamespace>VulkanWillemsExpander</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>--debug -v -r  e:\Work\_Examples\Vulkan\SaschaWillems</CommandLineArguments>
+    <CommandLineArguments>--debug -v -r e:\Work\_Examples\Vulkan\SaschaWillems\ --all --overwrite</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
