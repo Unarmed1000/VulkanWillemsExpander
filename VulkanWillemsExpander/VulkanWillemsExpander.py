@@ -57,7 +57,7 @@ SOURCE_TAG = "// Expanded by VulkanWillemsExpander https://github.com/Unarmed100
 
 
 def GetTitle():
-    return 'VulkanWillemsExpander V0.1.9 alpha'
+    return 'VulkanWillemsExpander V0.2.0 alpha'
 
 
 def ShowTitleIfNecessary():
@@ -181,7 +181,7 @@ def ExtractParameters(parameters):
 
 
 def FindNextInitializer(source, startIndex):
-    searchString = "vkTools::initializers::"
+    searchString = "vks::initializers::"
     newIndex = source.find(searchString, startIndex)
     if newIndex < 0:
         return None
@@ -918,7 +918,7 @@ def main():
     parser.add_argument("outputFile", nargs='?', default=None, help="the name of the output file")
     parser.add_argument('-r', '--recursive', action='store_true',  help="Scan the given path recursively for .hpp and .cpp files that contain 'public VulkanExampleBase' and process those that do")
     parser.add_argument('--all', action='store_true',  help="If recursive mode and 'all' is enabled, then all hpp and cpp files are modified")
-    parser.add_argument('--overwrite', action='store_true',  help="Overwrite the input file(s), this only wors if no outputFile is specified")
+    parser.add_argument('--overwrite', action='store_true',  help="Overwrite the input file(s), this only works if no outputFile is specified")
 
     try:
         args = parser.parse_args()
